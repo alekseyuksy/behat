@@ -11,3 +11,4 @@ Feature: Alice company search
     Examples:
       | page   |      search          | heading                 |
       | "WIKI" |  "Alice company"     |  "ALICE (company)"      |
+      | "WIKI" |  "BMW"               |  "BMW (company)"      |
