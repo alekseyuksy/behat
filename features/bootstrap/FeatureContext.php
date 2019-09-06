@@ -42,7 +42,7 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
     }
 
     /**
-     * 
+     *
      * @When I press button with id :id
      *
      * @param string $id
