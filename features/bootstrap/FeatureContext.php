@@ -11,45 +11,46 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext
     /** @var \Behat\Mink\Element\DocumentElement $page */
     public $page;
 
+    private $urls = [
+        'WIKI' => "https://en.wikipedia.org/wiki/Main_Page"
+    ];
+
     /**
-     * @Given I open page :url
+     * @Given I open :page
      *
-     * @param string $url
+     * @param string
      */
-    public function goToPage($url)
+    public function goToPage($page)
     {
         $driver = new \Behat\Mink\Driver\Selenium2Driver('chrome');
 
         $session = new \Behat\Mink\Session($driver);
 
         $session->start();
-        $session->visit($url);
+        $session->visit($this->urls[$page]);
 
         $this->session = $session;
         $this->page = $session->getPage();
     }
 
     /**
-     * @When I fill input by id :id with value :value
+     * @When I fill search with value :value
      *
-     * @param string $id
      * @param string $value
      */
-    public function fillInputById($id, $value)
+    public function fillInputById($value)
     {
-        $field = $this->page->findById($id);
+        $field = $this->page->findById("searchInput");
         $field->setValue($value);
     }
 
     /**
      *
-     * @When I press button with id :id
-     *
-     * @param string $id
+     * @When I press search button
      */
-    public function pressButtonWithId($id)
+    public function pressButtonWithId()
     {
-        $button = $this->page->findById($id);
+        $button = $this->page->findById( "searchButton");
         $button->press();
     }
 
